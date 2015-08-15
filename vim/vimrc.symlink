@@ -1,25 +1,14 @@
-syntax enable 	"Enable syntax highlighting
-
-" auto reload vimrc when editing it
-autocmd! bufwritepost .vimrc source ~/.vimrc
-
-" Appearance
-colorscheme wombat
-set linespace=3
-
-" Tabs and Spaces
-set tabstop=2
-set softtabstop=2
-set expandtab
-
-" UI config
-set number      " Show line numbers
-set showcmd     " show last command in bottom bar
+" Auto-install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
 
 " Plugins
-call plug#begin('~/.vim/plugged)
+call plug#begin('~/.vim/plugged')
 
-Plug 'flazz/vim-colorschemes''
+Plug 'flazz/vim-colorschemes'
 Plug 'kien/ctrlp.vim'
 Plug 'othree/html5.vim'
 Plug 'scrooloose/nerdtree'
@@ -41,6 +30,25 @@ Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 
 call plug#end()
+
+
+syntax enable 	"Enable syntax highlighting
+
+" auto reload vimrc when editing it
+autocmd! bufwritepost .vimrc source ~/.vimrc
+
+" Appearance
+colorscheme wombat
+set linespace=3
+
+" Tabs and Spaces
+set tabstop=2
+set softtabstop=2
+set expandtab
+
+" UI config
+set number      " Show line numbers
+set showcmd     " show last command in bottom bar
 
 
 " Wrap gitcommit file types at the appropriate length
