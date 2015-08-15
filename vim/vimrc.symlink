@@ -1,5 +1,12 @@
 syntax enable 	"Enable syntax highlighting
 
+" auto reload vimrc when editing it
+autocmd! bufwritepost .vimrc source ~/.vimrc
+
+" Appearance
+colorscheme wombat
+set linespace=3
+
 " Tabs and Spaces
 set tabstop=2
 set softtabstop=2
@@ -12,8 +19,66 @@ set showcmd     " show last command in bottom bar
 " Plugins
 call plug#begin('~/.vim/plugged)
 
-Plug 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes''
+Plug 'kien/ctrlp.vim'
+Plug 'othree/html5.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'ervandew/supertab'
+Plug 'scrooloose/syntastic'
+Plug 'Townk/vim-autoclose'
+Plug 'kchmck/vim-coffee-script'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-surround'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'kana/vim-textobj-user'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+
+call plug#end()
 
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
+
+" Disable arrow keys
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+"turn off needless toolbar on gvim/mvim
+set guioptions-=T
+
+if has("gui_running")
+  if has("gui_mac") || has("gui_macvim")
+    set guifont=Menlo:h13
+    " key binding for Command-T to behave properly
+    " uncomment to replace the Mac Command-T key to Command-T plugin
+    macmenu &File.New\ Tab key=<nop>
+    map <D-t> :CtrlP<CR>
+    " make Mac's Option key behave as the Meta key
+  endif
+endif
+
+" Map to CtrlP finder3yy
+nnoremap <leader>t :CtrlP<CR>
+let g:ctrlp_working_path_mode = 2
+" use silver searcher for ctrlp
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+" Store temporary files in a central spot
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
+" clear the command line and search highlighting
+noremap <C-l> :nohlsearch<CR>
+
+set clipboard=unnamed	" yank to the system register (*) by default
+set mouse=a     " mouse mode
