@@ -1,4 +1,19 @@
-syntax on
+syntax enable 	"Enable syntax highlighting
+
+" Tabs and Spaces
+set tabstop=2
+set softtabstop=2
+set expandtab
+
+" UI config
+set number      " Show line numbers
+set showcmd     " show last command in bottom bar
+
+" Plugins
+call plug#begin('~/.vim/plugged)
+
+Plug 'flazz/vim-colorschemes'
+
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on

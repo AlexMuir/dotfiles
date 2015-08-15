@@ -7,6 +7,7 @@ Forked from Zac Holman's magnificent repo, demolished, rebuilt.
 ```sh
 git clone https://github.com/AlexMuir/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
+osx/set_defaults.sh # On Mac
 script/bootstrap
 ```
 
