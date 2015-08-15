@@ -1,4 +1,16 @@
-# holman does dotfiles
+# Serious geekery ahoy!
+
+Forked from Zac Holman's magnificent repo, demolished, rebuilt.
+
+## Install
+
+```sh
+git clone https://github.com/AlexMuir/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+script/bootstrap
+```
+
+
 
 ## dotfiles
 
