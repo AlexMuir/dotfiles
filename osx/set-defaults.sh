@@ -5,6 +5,12 @@
 #
 # Run ./set-defaults.sh and you'll be good to go.
 
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
@@ -16,11 +22,12 @@ defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool trueo
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
 # Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+exit
 
 # Reveal IP address, hostname, OS version, etc. when clicking the clock
 # in the login window
@@ -236,9 +243,6 @@ sudo mdutil -E / > /dev/null
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
 
-# Install the Solarized Dark theme for iTerm
-open "${HOME}/init/Solarized Dark.itermcolors"
-
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
@@ -300,7 +304,7 @@ defaults write org.m0k.transmission WarningDonate -bool false
 # Hide the legal disclaimer
 defaults write org.m0k.transmission WarningLegal -bool false
 
-pp in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
+for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
 	"Dock" "Finder" "Google Chrome" "Mail" "Messages" \
 	"Opera" "Safari" "SystemUIServer" "Terminal" \
 	"Transmission" "iCal"; do
