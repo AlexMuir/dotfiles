@@ -8,9 +8,14 @@ Forked from Zac Holman's magnificent repo, demolished, rebuilt.
 git clone https://github.com/AlexMuir/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 osx/set_defaults.sh # On Mac
+script/install # First install
 script/bootstrap
 ```
 
+## Notable changes
+$DOTFILES is used to refer to the ~/.dotfiles directory, instead of
+the $ZSH variable that Holman uses.  This is to allow OHMYZSH to 
+install.
 
 
 ## dotfiles
