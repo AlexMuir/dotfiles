@@ -26,7 +26,8 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+"Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Writing mode
@@ -43,7 +44,7 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 
 " Appearance
 colorscheme wombat
-set linespace=3
+set linespace=3 " Spacing between lines in GUI
 
 " Tabs and Spaces
 set shiftwidth=2
@@ -56,6 +57,10 @@ set shiftwidth=2
 set number      " Show line numbers
 set showcmd     " show last command in bottom bar
 
+" Searching
+set hlsearch    " Highlight searches
+" clear the command line and search highlighting
+noremap <C-l> :nohlsearch<CR> 
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
@@ -76,7 +81,6 @@ if has("gui_running")
     " uncomment to replace the Mac Command-T key to Command-T plugin
     macmenu &File.New\ Tab key=<nop>
     map <D-t> :CtrlP<CR>
-    " make Mac's Option key behave as the Meta key
   endif
 endif
 
@@ -91,14 +95,11 @@ set backup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
-" clear the command line and search highlighting
-noremap <C-l> :nohlsearch<CR>
 
 set clipboard=unnamed	" yank to the system register (*) by default
 set mouse=a     " mouse mode
 
 " Writing mode
-
 function! s:goyo_enter()
   colorscheme habiLight
   Limelight
@@ -121,3 +122,15 @@ endfunction
 
 autocmd User GoyoEnter nested call <SID>goyo_enter()
 autocmd User GoyoLeave nested call <SID>goyo_leave()
+
+" Lets me rename a file in one fell swoop.
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
+endfunction
+map <leader>r :call RenameFile()<cr>
