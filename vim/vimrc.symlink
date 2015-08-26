@@ -14,19 +14,16 @@ Plug 'scrooloose/nerdtree'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/syntastic'
 Plug 'Townk/vim-autoclose'
-Plug 'kchmck/vim-coffee-script'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise' " is annoying me 
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
-Plug 'othree/html5.vim'
+Plug 'tpope/vim-repeat' " Lets us repeat plugin commands (eg. surround)
+Plug 'othree/html5.vim' " SVG support
 Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'kana/vim-textobj-user'
-Plug 'godlygeek/tabular'
+Plug 'kana/vim-textobj-user' " Needed by above
+Plug 'godlygeek/tabular' " Needed by vim-markdown
 Plug 'plasticboy/vim-markdown'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-"Plug 'garbas/vim-snipmate'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
@@ -37,14 +34,25 @@ Plug 'junegunn/limelight.vim'
 call plug#end()
 
 
+set nocompatible
 syntax enable 	"Enable syntax highlighting
+
+:set backspace=indent,eol,start " Backspace over everything
+
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+    autocmd GUIEnter * set visualbell t_vb=
+endif
+
 
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
+
 " Appearance
 colorscheme wombat
 set linespace=3 " Spacing between lines in GUI
+set cursorline " Highlight the line with the cursor on
 
 " Tabs and Spaces
 set shiftwidth=2
@@ -98,6 +106,9 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 set clipboard=unnamed	" yank to the system register (*) by default
 set mouse=a     " mouse mode
+
+" Ruby text objects need matchit enabled
+runtime macros/matchit.vim
 
 " Writing mode
 function! s:goyo_enter()
