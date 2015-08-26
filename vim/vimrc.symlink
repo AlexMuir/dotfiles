@@ -1,7 +1,7 @@
 " Auto-install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
 
@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'flazz/vim-colorschemes'
 Plug 'kien/ctrlp.vim'
-Plug 'othree/html5.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/syntastic'
@@ -20,6 +19,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
+Plug 'othree/html5.vim'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'kana/vim-textobj-user'
 Plug 'godlygeek/tabular'
@@ -28,6 +28,10 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
+
+" Writing mode
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 call plug#end()
 
@@ -46,6 +50,7 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set expandtab
+set shiftwidth=2
 
 " UI config
 set number      " Show line numbers
@@ -91,3 +96,28 @@ noremap <C-l> :nohlsearch<CR>
 
 set clipboard=unnamed	" yank to the system register (*) by default
 set mouse=a     " mouse mode
+
+" Writing mode
+
+function! s:goyo_enter()
+  colorscheme habiLight
+  Limelight
+  if has('gui_running')
+    set fullscreen
+    set background=light
+    set linespace=7
+  endif
+endfunction
+
+function! s:goyo_leave()
+  Limelight!
+  colorscheme wombat
+  if has('gui_running')
+    set nofullscreen
+    set background=dark
+    set linespace=0
+  endif
+endfunction
+
+autocmd User GoyoEnter nested call <SID>goyo_enter()
+autocmd User GoyoLeave nested call <SID>goyo_leave()
