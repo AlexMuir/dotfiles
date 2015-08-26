@@ -42,6 +42,7 @@ colorscheme wombat
 set linespace=3
 
 " Tabs and Spaces
+set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set expandtab
