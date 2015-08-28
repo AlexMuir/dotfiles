@@ -10,6 +10,9 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'flazz/vim-colorschemes'
 Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-bundler'
+Plug 'vim-ruby/vim-ruby'
 Plug 'scrooloose/nerdtree'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/syntastic'
@@ -37,7 +40,7 @@ call plug#end()
 set nocompatible
 syntax enable 	"Enable syntax highlighting
 
-:set backspace=indent,eol,start " Backspace over everything
+set backspace=indent,eol,start " Backspace over everything
 
 set noerrorbells visualbell t_vb=
 if has('autocmd')
@@ -144,4 +147,4 @@ function! RenameFile()
     redraw!
   endif
 endfunction
-map <leader>r :call RenameFile()<cr>
+map <leader>n :call RenameFile()<cr>
