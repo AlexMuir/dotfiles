@@ -29,10 +29,11 @@ Plug 'godlygeek/tabular' " Needed by vim-markdown
 Plug 'plasticboy/vim-markdown'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'pangloss/vim-javascript'
+Plug 'albfan/ag.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
-" Writing mode
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 
 call plug#end()
 
@@ -148,3 +149,6 @@ function! RenameFile()
   endif
 endfunction
 map <leader>n :call RenameFile()<cr>
+
+" Don't fold code
+set nofoldenable
