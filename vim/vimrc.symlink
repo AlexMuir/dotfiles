@@ -27,7 +27,7 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'kana/vim-textobj-user' " Needed by above
 Plug 'godlygeek/tabular' " Needed by vim-markdown
 Plug 'plasticboy/vim-markdown'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'pangloss/vim-javascript'
 Plug 'albfan/ag.vim'
